@@ -36,36 +36,78 @@ const DEFAULT_NAV_ITEMS: ReadonlyArray<NavItem> = [
       },
     ],
   },
-  { key: "volunteer", label: "Get Involved", href: "/volunteer" },
-  { key: "about", label: "About Us", href: "/about-us" },
+  {
+    key: "volunteer",
+    label: "Get Involved",
+    href: "/volunteer",
+    children: [
+      {
+        key: "upcoming",
+        label: "Our Upcoming Events",
+        href: "/upcoming-events",
+      },
+      {
+        key: "volunteering",
+        label: "Volunteering",
+        href: "/volunteering",
+      },
+    ],
+  },
+  {
+    key: "about",
+    label: "About Us",
+    href: "/about-us",
+    children: [
+      {
+        key: "recent",
+        label: "What we've been up to",
+        href: "/recent",
+      },
+      {
+        key: "history",
+        label: "Our History",
+        href: "/about-us/our-history",
+      },
+    ],
+  },
 ];
+
+function CTA() {
+  return (
+    <div className="headerCTA">
+      <div className="contactNumber">
+        <p>call us on</p>
+        <a href="tel:07456222222">07456222222</a>
+      </div>
+      <button>Donate Now</button>
+    </div>
+  );
+}
 
 export default function SiteHeader(props: Readonly<SiteHeaderProps>) {
   const { compact = false, items = DEFAULT_NAV_ITEMS } = props;
   return (
     <header className={`container siteHeader ${compact ? "isCompact" : ""}`}>
       <div className="headerLogo">
-        <img src="./../../../../public/images/site-logo.jpg" alt="" />
+        <img src="./../../../../public/images/mwt-site-logo.png" alt="" />
       </div>
       <div className="headerMain">
         <div className="headerTop">
-          <p>search bar</p>
+          <p>XYZ Welfare Trust</p>
         </div>
         <nav className="headerNav">
           {items.map((item) => (
-            <a key={item.key} href={item.href} className="navLink">
+            <a
+              key={item.key}
+              href={item.href}
+              className={`navLink ${item.children ? "hasChildren" : ""}`}
+            >
               {item.label}
             </a>
           ))}
         </nav>
       </div>
-      <div className="headerCTA">
-        <div className="contactNumber">
-          <p>Call us on</p>
-          <p>0754222222</p>
-        </div>
-        <button className="donateNow">Donate</button>
-      </div>
+      <CTA />
     </header>
   );
 }

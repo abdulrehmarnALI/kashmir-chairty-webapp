@@ -7,7 +7,7 @@
 
 .headerLogo {
   flex: 0 0 auto;
-  width: 140px;
+  width: 160px;
   height: auto;
 }
 
@@ -28,16 +28,40 @@
 .headerNav {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-12);
 }
 
 .navLink {
   color: var(--fg);
   text-decoration: none;
   transition: color var(--transition-fast);
-  background-color: red;
+  font-family: var(--font-outfit);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.navLink.hasChildren::after {
+  content: "⌄";
+  padding-left: 0.6em;
+  font-size: 0.7em;
+  position: relative;
+  bottom: 6px;
 }
 
 .headerCTA {
   flex-basis: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--brand);
+}
+
+.contactNumber {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.contactNumber a {
+  color: red;
 }
