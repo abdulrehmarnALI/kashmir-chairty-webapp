@@ -1,0 +1,43 @@
+.siteHeader {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-6);
+  padding: var(--space-3) var(--space-16);
+}
+
+.headerLogo {
+  flex: 0 0 auto;
+  width: 140px;
+  height: auto;
+}
+
+.headerLogo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.headerMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navLink {
+  color: var(--fg);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  background-color: red;
+}
+
+.headerCTA {
+  flex-basis: 1;
+}
