@@ -1,3 +1,4 @@
+import type { StringValidation } from "zod/v3";
 import "./siteHeader.css";
 
 type NavItem = {
@@ -7,9 +8,21 @@ type NavItem = {
   children?: NavItem[];
 };
 
+type LanguageOption = {
+  code: string;
+  label: string;
+};
+
 type SiteHeaderProps = {
   compact?: boolean;
   items?: NavItem[];
+  charityName?: string;
+  raisedAmount?: number;
+  targetAmount?: number;
+  currencySymbol?: number;
+  languages?: LanguageOption[];
+  defaultLanguage: string;
+  onLanguageChange?: (code: string) => void;
 };
 
 const DEFAULT_NAV_ITEMS: ReadonlyArray<NavItem> = [
@@ -72,6 +85,17 @@ const DEFAULT_NAV_ITEMS: ReadonlyArray<NavItem> = [
   },
 ];
 
+const DEFAULT_LANGUAGES: LanguageOption[] = [
+  { code: "en", label: "English" },
+  { code: "ur", label: "Urdu" },
+  { code: "phr", label: "Pahari-Pothwari" },
+];
+
+function formatMoney(amount: number, currencySymbol: string) {
+  const formatted = Math.round(amount).toLocaleString("en-GB");
+  return `${currencySymbol}${formatted}`;
+}
+
 function CTA() {
   return (
     <div className="headerCTA">
@@ -85,7 +109,19 @@ function CTA() {
 }
 
 export default function SiteHeader(props: Readonly<SiteHeaderProps>) {
-  const { compact = false, items = DEFAULT_NAV_ITEMS } = props;
+  const {
+    compact = false,
+    items = DEFAULT_NAV_ITEMS,
+    charityName = "XYZ Welfare Trust",
+
+    raisedAmount = 82400,
+    targetAmount = 250000,
+    currencySymbol = "£",
+
+    languages = DEFAULT_LANGUAGES,
+    defaultLanguage = "en",
+    onLanguageChange,
+  } = props;
   return (
     <header className={`container siteHeader ${compact ? "isCompact" : ""}`}>
       <div className="headerLogo">
