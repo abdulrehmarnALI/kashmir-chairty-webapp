@@ -1,9 +1,8 @@
-# Kashmir Charity Web App
+# Kashmir Charity Website
 
-Starter repository for a new charity web application.
+## How to run:
 
-## Reference material
-
-- `research/` contains visual research.
-- `reference-assets/images/` contains reusable project images.
-- `reference-assets/fonts/` contains downloaded font files.
+| Command       | Action                                      |
+| :------------ | :------------------------------------------ |
+| `npm install` | Installs dependencies                       |
+| `npm run dev` | Starts local dev server at `localhost:4321` |
